@@ -1,11 +1,8 @@
 package br.com.ajudeumapesquisa.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.Type;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -14,63 +11,76 @@ import java.time.LocalDate;
 public class Pesquisa {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pesquisa")
-    private int codigo;
+    private int id;
 
-    @NotBlank(message = "Nome obrigatório!")
-    @Size(max = 100)
+    // status -> "recrutando" "buscando voluntários"...
+    // categorias -> "medicamento", "reabilitação", "questionário"
+
+    @NotBlank(message = "nome obrigatório!")
+    @Size(max = 200, message = "máximo 200 caracteres")
     private String nome;
 
-    @NotBlank(message = "Descrição obrigatório!")
-    @Size(max = 300)
+    @NotBlank(message = "descricao obrigatório!")
+    @Size(max = 400, message = "máximo 400 caracteres")
     private String descricao;
 
-    @NotBlank(message = "Objetivo da pesquisa obrigatório!")
-    @Size(max = 140)
-    private String objetivo;
-
-    @NotBlank(message = "Telefone obrigatório!")
-    @Size(max = 8)
-    private String telefone;
-
-    @NotBlank(message = "Celular obrigatório!")
-    @Size(max = 9)
-    private String celular;
-
-    @NotBlank(message = "E-mail obrigatório!")
-    @Size(max = 50)
-    private String email;
-
     private LocalDate dataInicio;
-
     private LocalDate dataTermino;
 
-    @NotBlank(message = "Pesquisador responsável obrigatório!")
-    @Size(max = 100)
-    private String nomePesquisadorResponsavel;
-
-    @NotBlank(message = "Protocolo obrigatório!")
-    @Size(max = 100)
+    @NotBlank(message = "protocolo obrigatório!")
+    @Size(max = 100, message = "máximo 100 caracteres")
     private String protocolo;
 
-    @NotBlank(message = "Critérios obrigatório!")
-    @Size(max = 200)
-    private String criterios;
-
+    @NotNull(message = "idadeMinina obrigatório!")
     private int idadeMinina;
 
+    @NotNull(message = "idadeMaxima obrigatório!")
     private int idadeMaxima;
+
+    @NotNull(message = "totalAmostra obrigatório!")
+    private int totalAmostra;
+
+    @Size(max = 140, message = "máximo 400 caracteres")
+    private String linkFormCadastro;
+
+    @NotBlank(message = "criteriosAceite obrigatório!")
+    @Size(max = 800, message = "máximo 800 caracteres")
+    private String criteriosAceite;
+
+    @NotBlank(message = "criteriosExclusao obrigatório!")
+    @Size(max = 800, message = "máximo 800 caracteres")
+    private String criteriosExclusao;
+
+    @NotBlank(message = "etapasPesquisa obrigatório!")
+    @Size(max = 800, message = "máximo 800 caracteres")
+    private String etapasPesquisa;
+
+    @NotBlank(message = "condicoesSaude obrigatório!")
+    @Size(max = 400, message = "máximo 400 caracteres")
+    private String condicoesSaude;
+
+    @NotBlank(message = "telefone obrigatório!")
+    @Size(max = 8, message = "máximo 8 caracteres")
+    private String telefone;
+
+    @NotBlank(message = "celular obrigatório!")
+    @Size(max = 9, message = "máximo 9 caracteres")
+    private String celular;
+
+    @NotBlank(message = "email obrigatório!")
+    @Size(max = 50, message = "máximo 50 caracteres")
+    private String email;
 
     private Byte imgCover;
 
-    @Type(type="true_false")
-    private Boolean status;
 
-    public int getCodigo() {
-        return codigo;
+
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -89,12 +99,92 @@ public class Pesquisa {
         this.descricao = descricao;
     }
 
-    public String getObjetivo() {
-        return objetivo;
+    public LocalDate getDataInicio() {
+        return dataInicio;
     }
 
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(LocalDate dataTermino) {
+        this.dataTermino = dataTermino;
+    }
+
+    public String getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(String protocolo) {
+        this.protocolo = protocolo;
+    }
+
+    public int getIdadeMinina() {
+        return idadeMinina;
+    }
+
+    public void setIdadeMinina(int idadeMinina) {
+        this.idadeMinina = idadeMinina;
+    }
+
+    public int getIdadeMaxima() {
+        return idadeMaxima;
+    }
+
+    public void setIdadeMaxima(int idadeMaxima) {
+        this.idadeMaxima = idadeMaxima;
+    }
+
+    public int getTotalAmostra() {
+        return totalAmostra;
+    }
+
+    public void setTotalAmostra(int totalAmostra) {
+        this.totalAmostra = totalAmostra;
+    }
+
+    public String getLinkFormCadastro() {
+        return linkFormCadastro;
+    }
+
+    public void setLinkFormCadastro(String linkFormCadastro) {
+        this.linkFormCadastro = linkFormCadastro;
+    }
+
+    public String getCriteriosAceite() {
+        return criteriosAceite;
+    }
+
+    public void setCriteriosAceite(String criteriosAceite) {
+        this.criteriosAceite = criteriosAceite;
+    }
+
+    public String getCriteriosExclusao() {
+        return criteriosExclusao;
+    }
+
+    public void setCriteriosExclusao(String criteriosExclusao) {
+        this.criteriosExclusao = criteriosExclusao;
+    }
+
+    public String getEtapasPesquisa() {
+        return etapasPesquisa;
+    }
+
+    public void setEtapasPesquisa(String etapasPesquisa) {
+        this.etapasPesquisa = etapasPesquisa;
+    }
+
+    public String getCondicoesSaude() {
+        return condicoesSaude;
+    }
+
+    public void setCondicoesSaude(String condicoesSaude) {
+        this.condicoesSaude = condicoesSaude;
     }
 
     public String getTelefone() {
@@ -121,75 +211,11 @@ public class Pesquisa {
         this.email = email;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public LocalDate getDataTermino() {
-        return dataTermino;
-    }
-
-    public void setDataTermino(LocalDate dataTermino) {
-        this.dataTermino = dataTermino;
-    }
-
-    public String getNomePesquisadorResponsavel() {
-        return nomePesquisadorResponsavel;
-    }
-
-    public void setNomePesquisadorResponsavel(String nomePesquisadorResponsavel) {
-        this.nomePesquisadorResponsavel = nomePesquisadorResponsavel;
-    }
-
-    public String getProtocolo() {
-        return protocolo;
-    }
-
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
-    }
-
-    public String getCriterios() {
-        return criterios;
-    }
-
-    public void setCriterios(String criterios) {
-        this.criterios = criterios;
-    }
-
-    public int getIdadeMinina() {
-        return idadeMinina;
-    }
-
-    public void setIdadeMinina(int idadeMinina) {
-        this.idadeMinina = idadeMinina;
-    }
-
-    public int getIdadeMaxima() {
-        return idadeMaxima;
-    }
-
-    public void setIdadeMaxima(int idadeMaxima) {
-        this.idadeMaxima = idadeMaxima;
-    }
-
     public Byte getImgCover() {
         return imgCover;
     }
 
     public void setImgCover(Byte imgCover) {
         this.imgCover = imgCover;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 }

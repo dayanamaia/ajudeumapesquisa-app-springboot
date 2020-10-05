@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface PesquisaRepository extends JpaRepository<Pesquisa, Integer> {
     List<Pesquisa> findByNome(String nome);
-    List<Pesquisa> findByStatus(boolean status);
-    List<Pesquisa> findByNomeAndStatus(String nome, boolean status);
     List<Pesquisa> findByIdadeMaximaGreaterThan(int idadeMaxima);
+    Pesquisa findById(int id);
 }
